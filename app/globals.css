@@ -1,26 +1,150 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f1e8;
+  --foreground: #20293a;
+  --muted: #667089;
+  --border: #d8dfeb;
+  --accent: #5e8cdc;
+  --accent-soft: #edf4ff;
+  --font-sans-stack:
+    "Avenir Next", "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue",
+    sans-serif;
+  --font-display-stack:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-sans-stack);
+  --font-display: var(--font-display-stack);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255, 237, 209, 0.55), transparent 28%),
+    linear-gradient(180deg, #fbf8f3 0%, #f6f1e8 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans-stack);
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a,
+button,
+summary {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  border-radius: 1rem;
+  box-shadow: 0 0 0 4px rgba(94, 140, 220, 0.14);
+}
+
+button,
+summary {
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(94, 140, 220, 0.22);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .surface-card {
+    @apply rounded-[1.75rem] border bg-white;
+    border-color: rgba(216, 223, 235, 0.88);
+    box-shadow: 0 24px 80px -36px rgba(42, 59, 88, 0.28);
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em];
+    background: rgba(246, 248, 252, 0.98);
+    color: rgba(73, 83, 105, 0.9);
+  }
+
+  .input-field {
+    @apply h-[3.25rem] w-full rounded-2xl border px-4 text-base text-foreground outline-none transition sm:h-14;
+    border-color: rgba(216, 223, 235, 0.92);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  }
+
+  .input-field::placeholder {
+    color: rgba(102, 112, 137, 0.72);
+  }
+
+  .input-field:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(94, 140, 220, 0.12);
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white transition;
+    background: linear-gradient(135deg, #5e8cdc 0%, #6e9ae2 100%);
+    box-shadow: 0 18px 40px -20px rgba(46, 91, 158, 0.8);
+  }
+
+  .button-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 22px 44px -22px rgba(46, 91, 158, 0.82);
+  }
+
+  .button-primary:focus-visible {
+    box-shadow:
+      0 22px 44px -22px rgba(46, 91, 158, 0.82),
+      0 0 0 4px rgba(94, 140, 220, 0.16);
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center rounded-full border px-5 py-3 text-sm font-semibold text-foreground transition;
+    border-color: rgba(216, 223, 235, 0.95);
+    background: rgba(255, 255, 255, 0.86);
+  }
+
+  .button-secondary:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(171, 186, 214, 0.95);
+  }
+
+  .button-secondary:focus-visible {
+    box-shadow: 0 0 0 4px rgba(94, 140, 220, 0.14);
+  }
 }
