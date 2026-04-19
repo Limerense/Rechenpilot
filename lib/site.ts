@@ -25,6 +25,7 @@ export type PrimaryNavItem = {
 export const siteConfig = {
   name: "Rechenpilot",
   claim: "Rechner, die dir sofort weiterhelfen",
+  url: "https://rechenpilot.at",
   description:
     "Kostenlose Online-Rechner für Alltag, Schule und Geld - schnell, verständlich und ohne Anmeldung.",
   locale: "de-DE",

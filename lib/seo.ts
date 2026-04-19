@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 
 import { siteConfig } from "@/lib/site";
 
-const FALLBACK_SITE_URL = "https://www.rechenpilot.de";
+const FALLBACK_SITE_URL = siteConfig.url;
 
 export function getSiteUrl() {
-  const candidate = process.env.NEXT_PUBLIC_SITE_URL ?? FALLBACK_SITE_URL;
-
   try {
-    return new URL(candidate).origin;
+    return new URL(FALLBACK_SITE_URL).origin;
   } catch {
     return FALLBACK_SITE_URL;
   }
